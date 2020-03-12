@@ -1,4 +1,5 @@
 //jshint esversion: 9
+import {validateURL} from './validateURL';
 function handleSubmit(event) {
     event.preventDefault();
 
@@ -8,7 +9,7 @@ function handleSubmit(event) {
 
     // console.log("::: Form Submitted :::");
     let url = document.getElementById('url').value;
-    if(Client.validateURL(url)){
+    // if(Client.validateURL(url)){
       const dataAylien = async (url, data={}) =>{
         const response = await fetch(url, {
           method: 'POST',
