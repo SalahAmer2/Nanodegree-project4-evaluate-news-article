@@ -1,5 +1,5 @@
 //jshint esversion: 9
-import {validateURL} from './validateURL';
+// import {validateURL} from './validateURL';
 function handleSubmit(event) {
     event.preventDefault();
 
@@ -8,39 +8,45 @@ function handleSubmit(event) {
     // checkForName(formText);
 
     // console.log("::: Form Submitted :::");
-    let url = document.getElementById('url').value;
-    // if(Client.validateURL(url)){
-      const dataAylien = async (url, data={}) =>{
-        const response = await fetch(url, {
-          method: 'POST',
-          credentials: 'same origin',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-        try {
-          const newData = await response.json();
-          return newData;
-        } catch (e) {
-          console.log("Error: " + e);
-        }
-      };
-      dataAylien('/sentiment', {url: url})
-        .then(
-          function (res){
-            console.log(res);
-            const data = res.data;
-            document.getElementById('polarity').innerHTML = res.polarity;
-            document.getElementById('subjectivity').innerHTML = res.subjectivity;
-            document.getElementById('text').innerHTML = res.text;
-          }
-        );
+    const baseURL = "http://localhost:8080/sentiment";
+    let inputtedUrl = document.getElementById('url').value;
+
+  if (isURL(inputtedUrl)) {
+    fetch(baseURL, {//Salah: fetches from app.post("/sentiment"
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ url: inputtedUrl })
+    })
+      .then(res => res.json())//Salah: res is what's received from server/index.js from res.send(projectData);
+      .then(res => {
+        document.getElementById(
+          "polarity"
+        ).innerHTML = `<strong>Polarity:</strong><br> ${res.polarity}`;
+        document.getElementById(
+          "subjectivity"
+        ).innerHTML = `<strong>Subjectivity:</strong><br> ${res.subjectivity}`;
+        document.getElementById("texxt").innerHTML = `<p>${res.text}</p>`;
+      });
+  } else {
+    alert("URL is not valid!");
+  }
+
+  // Validate the URL
+  function isURL(str) {
+    var regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+    if (regexp.test(str)) {
+      return true;
     } else {
-      console.log("Invalid URL");
+      return false;
     }
+  }
 }
+
 export { handleSubmit };
+
 
 // const res = await fetch('http://localhost:8080/sentiment')
 

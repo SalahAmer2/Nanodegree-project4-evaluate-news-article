@@ -1,13 +1,13 @@
-//jshint esversion: 9
-function validateURL(url){
-  var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
-    if (!re.test(url)) {
-      alert("url error");
-      return false;
-    }
-}
-
-export { validateURL };
+// //jshint esversion: 9
+// function validateURL(url){
+//   var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+//     if (!re.test(url)) {
+//       alert("url error");
+//       return false;
+//     }
+// }
+//
+// export { validateURL };
 
 // function checkForName(inputText) {
 

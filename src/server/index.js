@@ -18,6 +18,8 @@ const app = express();
 app.use(express.static('dist'));
 
 console.log(__dirname);
+// Setup empty JS object to act as an endpoint
+let projectData = {};
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html');
@@ -25,10 +27,17 @@ app.get('/', function (req, res) {
 });
 
 app.post('/sentiment', function (req, res){
-  const url = req.body.url;
-  aylienapi.sentiment({url: url}, function(error, response){
-    if(error === null){
-      console.log(response);
+  const urlUser = req.body.url;
+  aylienapi.sentiment({ url: urlUser }, (error, response) => {
+    if (error === null) {
+      projectData["polarity"] = response.polarity;
+      projectData["subjectivity"] = response.subjectivity;
+      projectData["text"] = response.text;
+
+      res.send(projectData);
+      console.log(projectData);
+    } else {
+      console.log(error, "Error");
     }
   });
 });
