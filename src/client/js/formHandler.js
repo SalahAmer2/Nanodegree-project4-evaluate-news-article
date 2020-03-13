@@ -10,7 +10,7 @@ function handleSubmit(event) {
     // let formText = document.getElementById('name').value;
     // checkForName(formText);
 
-    // console.log("::: Form Submitted :::");
+    console.log("::: Form Submitted :::");
     const baseURL = "http://localhost:8080/sentiment";
     let inputtedUrl = document.getElementById('url').value;
 
