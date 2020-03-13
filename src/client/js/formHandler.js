@@ -11,7 +11,7 @@ function handleSubmit(event) {
     const baseURL = "http://localhost:8080/sentiment";
     let inputtedUrl = document.getElementById('url').value;
 
-    fetch(baseURL, {//Salah: fetches from app.post("/sentiment"
+    fetch(baseURL, {//fetches from app.post("/sentiment"
       method: "POST",
       credentials: 'same-origin',
       headers: {
@@ -19,7 +19,7 @@ function handleSubmit(event) {
       },
       body: JSON.stringify({ url: inputtedUrl })
     })
-      .then(res => res.json())//Salah: res is what's received from server/index.js from res.send(projectData);
+      .then(res => res.json())//res is what's received from server/index.js from res.send(projectData);
       .then(res => {
         document.getElementById(
           "polarity"
@@ -27,7 +27,7 @@ function handleSubmit(event) {
         document.getElementById(
           "subjectivity"
         ).innerHTML = `<strong>Subjectivity:</strong><br> ${res.subjectivity}`;
-        document.getElementById("texxt").innerHTML = `<p>${res.text}</p>`;
+        document.getElementById("text").innerHTML = `<p>${res.text}</p>`;
       });
 }
 export { handleSubmit };
