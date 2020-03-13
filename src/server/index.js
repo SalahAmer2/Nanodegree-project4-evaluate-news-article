@@ -30,10 +30,15 @@ app.post('/sentiment', function (req, res){
   const urlUser = req.body.url;
   aylienapi.sentiment({ url: urlUser }, (error, response) => {
     if (error === null) {
-      projectData["polarity"] = response.polarity;
-      projectData["subjectivity"] = response.subjectivity;
-      projectData["text"] = response.text;
+      // projectData["polarity"] = response.polarity;
+      // projectData["subjectivity"] = response.subjectivity;
+      // projectData["text"] = response.text;
 
+      projectData = {
+        "polarity": response.polarity,
+        "subjectivity": response.subjectivity,
+        "text": response.text
+      };
       res.send(projectData);
       console.log(projectData);
     } else {
