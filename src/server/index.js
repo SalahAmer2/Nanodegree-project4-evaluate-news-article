@@ -1,12 +1,17 @@
 //jshint esversion:9
 
 const dotenv = require('dotenv');
+dotenv.config();
+
 const path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
+const cors = require("cors");
 const aylien = require("aylien_textapi");
+const bodyParser = require("body-parser");
 
-dotenv.config();
+// Setup empty JS object to act as an endpoint
+let projectData = {};
 
 var aylienapi = new aylien({
 application_id: process.env.API_ID,
@@ -15,11 +20,14 @@ application_key: process.env.API_KEY
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(cors());
+
 app.use(express.static('dist'));
 
 console.log(__dirname);
-// Setup empty JS object to act as an endpoint
-let projectData = {};
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html');
@@ -27,8 +35,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/sentiment', function (req, res){
-  const urlUser = req.body.url;
-  aylienapi.sentiment({ url: urlUser }, (error, response) => {
+  aylienapi.sentiment({ url: req.body.url }, (error, response) => {
     if (error === null) {
       // projectData["polarity"] = response.polarity;
       // projectData["subjectivity"] = response.subjectivity;
