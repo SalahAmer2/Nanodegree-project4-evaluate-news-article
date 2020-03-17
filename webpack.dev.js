@@ -57,6 +57,6 @@ module.exports = {
     new CopyPlugin([
       { from: 'source', to: 'dest' },
       { from: 'other', to: 'public' },
-    ]),
+    ])
   ]
 }
