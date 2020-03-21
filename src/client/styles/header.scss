@@ -1,5 +1,20 @@
 header {
-    display: flex;
-    justify-content: space-between;
     padding: 10px 40px;
+    height: 2em;
+    font-size: 1.5em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(45, 0, 0);
+    color: white;
+    font-weight: bold;
+}
+
+ul li {
+    display: inline;
+}
+
+#img {
+    width: 20px;
 }

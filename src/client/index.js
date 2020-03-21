@@ -1,4 +1,3 @@
-//jshint esversion:9
 import { handleSubmit } from './js/formHandler';
 import { isValidURL } from './js/validateURL';
 import './styles/resets.scss';
