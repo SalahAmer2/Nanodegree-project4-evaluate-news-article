@@ -1,4 +1,4 @@
-## Evaluate News Natural Language Processor
+## Evaluate News with Natural Language Processor
 
 ### Description
 We require `aylien_textapi` and instantiate the `aylienApi` variable and put in it the `application_id` and `application_key` and use **_dotenv_** for security by preventing the exposure of the private `application_id` and `application_key`. Then we access **_sentiment_** in `aylienApi` with the dot operator and use `req.body.url` as the first operator and we take it from **_formhandler.js_** that fetches this `'/sentiment'` path sending the `req.body.url` to it.
