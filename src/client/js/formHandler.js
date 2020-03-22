@@ -1,7 +1,13 @@
 // jshint esversion: 9
-// import {validateURL} from './validateURL';
 
-document.getElementById('submit').addEventListener('click', handleSubmit)
+// window.onload = () =>{
+//   document.getElementById('submit').addEventListener('click', handleSubmit)
+// }
+
+var submit = document.getElementById('submit');
+if (submit) {
+  submit.addEventListener('click', handleSubmit);
+}
 
 function handleSubmit(event) {
   event.preventDefault()

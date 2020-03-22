@@ -3,7 +3,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
 const cors = require("cors");
@@ -13,7 +12,7 @@ const bodyParser = require("body-parser");
 // Setup empty JS object to act as an endpoint
 let projectData = {};
 
-var aylienapi = new aylien({
+var aylienApi = new aylien({
 application_id: process.env.API_ID,
 application_key: process.env.API_KEY
 });
@@ -35,7 +34,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/sentiment', function (req, res){
-  aylienapi.sentiment({ url: req.body.url }, (error, response) => {
+  aylienApi.sentiment({ url: req.body.url }, (error, response) => {
     if (error === null) {
       // projectData["polarity"] = response.polarity;
       // projectData["subjectivity"] = response.subjectivity;
