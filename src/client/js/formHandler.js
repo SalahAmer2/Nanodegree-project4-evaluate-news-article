@@ -13,7 +13,7 @@ function handleSubmit(event) {
   event.preventDefault()
 
   console.log('::: Form Submitted :::')
-  const baseURL = 'http://localhost:8080/sentiment'
+  const baseURL = 'https://evaluate-news-nlp.netlify.com/sentiment'
   let inputtedUrl = document.getElementById('url').value
 
   if (Client.isValidURL(inputtedUrl)) {
