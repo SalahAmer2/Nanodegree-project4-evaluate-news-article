@@ -1,6 +1,5 @@
 footer {
     background-color: rgb(46, 61, 73);
-    z-index: -1;
 }
 
 #footer {
@@ -11,4 +10,9 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+a {
+    color: rgb(202, 193, 195);
+    cursor: pointer;
 }

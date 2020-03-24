@@ -58,10 +58,6 @@ app.listen(process.env.PORT || 8080, function () {
     console.log('Example app listening on port 8080!');
 });
 
-// app.listen(process.env.PORT, function () {
-//   console.log('Example app listening on port 8080!');
-// });
-
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse);
 });
